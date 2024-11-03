@@ -38,7 +38,7 @@ const URLSchema = new mongoose.Schema({
         userAgent: String,
         accessedAt: {
             type: Date,
-            default: Date.now,
+            default: Date.now(),
         },
     }]
 },{new: true});
