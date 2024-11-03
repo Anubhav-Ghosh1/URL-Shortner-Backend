@@ -32,7 +32,7 @@ router.get("/track/:shortnedURL", trackVisit);
 router.get("/user-urls", verifyJWT, getAllURLByUser);
 
 // Update a specific URL
-router.put("/update", verifyJWT, updateURL);
+router.patch("/update", verifyJWT, updateURL);
 
 // Delete a specific URL
 router.delete("/delete", verifyJWT, deleteURL);

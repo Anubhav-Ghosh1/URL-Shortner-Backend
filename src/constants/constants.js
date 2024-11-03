@@ -1,1 +1,1 @@
-export const DB_NAME = "Food"
+export const DB_NAME = "URLShortner"
