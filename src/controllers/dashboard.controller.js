@@ -1,6 +1,6 @@
-import { User } from "../models/user.model";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
+import { User } from "../models/user.model.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 const userAnalytics = asyncHandler(async (req,res) => {
     try
@@ -39,7 +39,7 @@ const userAnalytics = asyncHandler(async (req,res) => {
                     username: 1,
                     totalVisitorCount: 1,
                     totalUrls: 1,
-                    urls: {
+                    Url: {
                         shortnedURL: 1,
                         originalURL: 1,
                         visitorCount: 1,
@@ -49,7 +49,7 @@ const userAnalytics = asyncHandler(async (req,res) => {
             }
         ]);
 
-        return res.status(200).json(new ApiResponse(200,response,"User details fetched successfully"));
+        return res.status(200).json(new ApiResponse(200,response[0],"User details fetched successfully"));
     }
     catch(e)
     {
