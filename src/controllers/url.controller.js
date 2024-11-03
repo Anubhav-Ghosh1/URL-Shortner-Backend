@@ -127,7 +127,7 @@ const redirectURL = asyncHandler(async (req, res) => {
 
 const getURLDetails = asyncHandler(async (req, res) => {
     try {
-        const { urlId } = req.body;
+        const { urlId } = req.params;
         if (!urlId) {
             return res
                 .status(400)
