@@ -10,7 +10,6 @@ const createURL = asyncHandler(async (req, res) => {
     try {
         const id = req?.user?._id;
         const { originalURL, isActive, customAlias } = req.body;
-
         if (!originalURL) {
             return res
                 .status(400)
@@ -35,6 +34,7 @@ const createURL = asyncHandler(async (req, res) => {
         const url = await URL.create({
             shortnedURL,
             originalURL,
+            customAlias: customAlias !== undefined ? customAlias : "",
             isActive: isActive !== undefined ? isActive : false,
             userId: id,
             visitorCount: 0,
@@ -106,7 +106,7 @@ const redirectURL = asyncHandler(async (req, res) => {
 
         // Find the URL document by the shortened URL
         const urlEntry = await URL.findOne({ shortnedURL });
-
+        
         // If no entry is found, return an error
         if (!urlEntry || !urlEntry.isActive) {
             return res
@@ -120,6 +120,7 @@ const redirectURL = asyncHandler(async (req, res) => {
 
         // Redirect to the original URL
         return res.redirect(urlEntry.originalURL);
+        // return res.status(200).json(new ApiResponse(200,urlEntry,"Data fetched successfully"));
     } catch (e) {
         return res
             .status(500)
